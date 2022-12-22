@@ -12,7 +12,6 @@ const todos = (req, res, next) => {
 };
 
 const todo = (req, res, next) => {
-  console.log(req.params);
   const slug = req.params.slug;
   Todo.findOne({ slug: slug })
     .then((todo) => res.status(200).json(todo))
