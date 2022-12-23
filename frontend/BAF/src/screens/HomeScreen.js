@@ -121,89 +121,90 @@ const HomeScreen = () => {
               height: height - 230,
               marginTop: 20,
             }}>
-            {dataTodos.map((todo, index) => {
-              return (
-                <View
-                  key={index}
-                  style={{
-                    width: '100%',
-                    marginBottom: 10,
-                    borderWidth: 1,
-                    borderColor: '#e0e0e0',
-                    borderRadius: 5,
-                  }}>
+            {dataTodos &&
+              dataTodos.map((todo, index) => {
+                return (
                   <View
+                    key={index}
                     style={{
-                      flexDirection: 'row',
-                      justifyContent: 'flex-start',
-                      alignItems: 'center',
-                      height: 70,
+                      width: '100%',
+                      marginBottom: 10,
+                      borderWidth: 1,
+                      borderColor: '#e0e0e0',
+                      borderRadius: 5,
                     }}>
                     <View
                       style={{
-                        backgroundColor:
-                          todo.color === 'success'
-                            ? 'green'
-                            : todo.color === 'danger'
-                            ? 'red'
-                            : todo.color === 'warning'
-                            ? 'yellow'
-                            : todo.color === 'info'
-                            ? 'blue'
-                            : todo.color === 'primary'
-                            ? 'purple'
-                            : todo.color === 'secondary'
-                            ? 'gray'
-                            : todo.color,
-                        width: 10,
-                        height: '100%',
-                        borderTopLeftRadius: 5,
-                        borderBottomLeftRadius: 5,
-                      }}
-                    />
-                    <View
-                      style={{
-                        padding: 10,
-                        width: '100%',
-                        height: '100%',
                         flexDirection: 'row',
+                        justifyContent: 'flex-start',
+                        alignItems: 'center',
+                        height: 70,
                       }}>
-                      <TouchableOpacity
-                        onPress={() => {
-                          openTodo(todo.slug);
-                        }}
-                        style={{
-                          width: '80%',
-                          height: '100%',
-                          justifyContent: 'space-between',
-                        }}>
-                        <Text
-                          style={{
-                            fontWeight: 'bold',
-                          }}>
-                          {formatName(todo.name)}
-                        </Text>
-                        <Text>{formatCreatedAt(todo.createdAt)}</Text>
-                      </TouchableOpacity>
                       <View
                         style={{
-                          width: '20%',
+                          backgroundColor:
+                            todo.color === 'success'
+                              ? 'green'
+                              : todo.color === 'danger'
+                              ? 'red'
+                              : todo.color === 'warning'
+                              ? 'yellow'
+                              : todo.color === 'info'
+                              ? 'blue'
+                              : todo.color === 'primary'
+                              ? 'purple'
+                              : todo.color === 'secondary'
+                              ? 'gray'
+                              : todo.color,
+                          width: 10,
                           height: '100%',
-                          alignItems: 'center',
-                          justifyContent: 'center',
+                          borderTopLeftRadius: 5,
+                          borderBottomLeftRadius: 5,
+                        }}
+                      />
+                      <View
+                        style={{
+                          padding: 10,
+                          width: '100%',
+                          height: '100%',
+                          flexDirection: 'row',
                         }}>
                         <TouchableOpacity
                           onPress={() => {
-                            onDeleteTodo(todo.slug);
+                            openTodo(todo.slug);
+                          }}
+                          style={{
+                            width: '80%',
+                            height: '100%',
+                            justifyContent: 'space-between',
                           }}>
-                          <Text>Delete</Text>
+                          <Text
+                            style={{
+                              fontWeight: 'bold',
+                            }}>
+                            {formatName(todo.name)}
+                          </Text>
+                          <Text>{formatCreatedAt(todo.createdAt)}</Text>
                         </TouchableOpacity>
+                        <View
+                          style={{
+                            width: '20%',
+                            height: '100%',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                          }}>
+                          <TouchableOpacity
+                            onPress={() => {
+                              onDeleteTodo(todo.slug);
+                            }}>
+                            <Text>Delete</Text>
+                          </TouchableOpacity>
+                        </View>
                       </View>
                     </View>
                   </View>
-                </View>
-              );
-            })}
+                );
+              })}
           </ScrollView>
         </View>
       </View>

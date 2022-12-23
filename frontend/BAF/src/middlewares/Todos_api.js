@@ -2,6 +2,7 @@ const API_URL = process.env.LOCAL_API_URL;
 
 export const getTodos = async () => {
   try {
+    console.log('API_URL: ', API_URL);
     const response = await fetch(`${API_URL}/todos`, {
       method: 'GET',
       headers: {

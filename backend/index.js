@@ -47,7 +47,36 @@ fs.readFile(".env", "utf8", function (error, data) {
       console.error(error);
       return;
     }
-    console.log("IPv4 address updated successfully");
+    console.log("IPv4 address at BE updated successfully");
+  });
+});
+
+fs.readFile("../frontend/BAF/.env", "utf8", function (error, data) {
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  const lines = data.split("\n");
+  let found = false;
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    if (line.startsWith("LOCAL_API_URL=")) {
+      lines[i] = "LOCAL_API_URL=http://" + ipv4 + ":3000";
+      found = true;
+      break;
+    }
+  }
+  if (!found) {
+    lines.push("LOCAL_API_URL=http://" + ipv4 + ":3000");
+  }
+
+  fs.writeFile("../frontend/BAF/.env", lines.join("\n"), function (error) {
+    if (error) {
+      console.error(error);
+      return;
+    }
+    console.log("IPv4 address at FE updated successfully");
   });
 });
 
